@@ -25,8 +25,7 @@
 
 配置 ts：
 
-    npx tsc --init --moduleResolution node --resolveJsonModule --target es6 --noImplicitAny --s
-ourceMap --lib dom,es2017 --outDir dist
+    npx tsc --init --moduleResolution node --resolveJsonModule --target es6 --noImplicitAny --sourceMap --lib dom,es2017 --outDir dist
 
 创建 dist 目录，并把 views 目录移到 dist 目录下。
 
