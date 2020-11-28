@@ -21,4 +21,7 @@
     npm i -D @types/node
     npm i -D @types/express
 
+配置 ts：
 
+    npx tsc --init --moduleResolution node --resolveJsonModule --target es6 --noImplicitAny --s
+ourceMap --lib dom,es2017 --outDir dist
