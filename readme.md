@@ -2,11 +2,13 @@
 
 ## 构建过程
 
+### 创建脚手架
+
 创建脚手架(express, ejs)：
 
     npx express-generator --view=ejs --git
 
-创建 src 目录，把 app.js 移到该目录下，并改名为：
+创建 src 目录，把 app.js, routes/ 移到该目录下，并改名为：
 
     app.ts
 
@@ -25,3 +27,16 @@
 
     npx tsc --init --moduleResolution node --resolveJsonModule --target es6 --noImplicitAny --s
 ourceMap --lib dom,es2017 --outDir dist
+
+创建 dist 目录，并把 views 目录移到 dist 目录下。
+
+编译：
+
+    npx tsc
+
+运行：
+
+    npm run start
+
+
+
