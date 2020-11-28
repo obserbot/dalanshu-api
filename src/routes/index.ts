@@ -1,9 +1,12 @@
-var express = require('express');
-var router = express.Router();
+import express, { Request, Response } from 'express'
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const router = express.Router()
 
-module.exports = router;
+/**
+ * Homepage
+ */
+router.get('/', function(req: Request, res: Response, next: NextFunction) {
+  res.render('index', { title: '大蓝书' })
+})
+
+module.exports = router
