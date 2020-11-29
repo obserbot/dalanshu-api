@@ -1,0 +1,59 @@
+﻿/*
+	* ----------------------------------------------------------------------------
+        _  _        _                 _                                 _                                               
+    ___| |(_) ___ _| |_  ____ _____ _| |_  ___   ___  _   _  _____  ___| |  _     _   _     _       _  _   _   _        
+   / __  || |/ __|__  _|/ _  |  _  |_   _|/ __| / _ \| | | ||  _  |/ __  | |_| | |_  |_  | | |  /|   |  | |_  |_   /|   
+  | (__| || |\__ \ | |_  (_| | | | | | |_ \__ \| |_| | |_| || | | | (__| |  _  |   |   | | | | |_|  _|  | | | | | |_|   
+   \_____||_||___/ |___|\____|_| |_| |___||___/ \___/|_____||_| |_|\_____| |_| |  _|  _| | |_|   | |_   | |_| |_|   |   
+   
+  * CSS Document Css sub Start 
+	* Author: DistantSound 
+	* IDE :     
+  * ---------------------------------------------------------------------------------------------
+*/ 
+.bg-1{margin-bottom: 1rem;background:#e5e5e5 url(../images/bg-1.png) no-repeat top center;}
+
+.show-hide-read{height:.5rem;line-height: .5rem; background-color: #5b95fc;font-size: .24rem;border-radius: .2rem; -webkit-border-radius: .25rem; -moz-border-radius: .25rem; -ms-border-radius: .25rem; -o-border-radius: .25rem;overflow: hidden;}
+.show-hide-read .s-span{float: left; width: 1.2rem; font-size: .24rem;height: .5rem;line-height: .5rem;text-align: center;font-weight: 600; }
+.show-hide-read .e-em{float: right; width: .5rem;height: .5rem;-webkit-transition:all 1.5s;-moz-transition:all 1.5s;-o-transition:all 1.5s;transition:all 1.5s;}
+ 
+.show-hide-read.current .e-em{float: left;}
+.show-hide-read.current .s-span{float: right;}
+ 
+.section-1 .row-ul{padding-bottom:.3rem;}
+.section-1 .div-box{margin: .15rem .2rem;}
+.section-1 .head-photo .pic-img{width: .6rem; height: .6rem;overflow: hidden;}
+.section-1 .head-photo .s-span{height: .6rem;line-height: .6rem;font-size: .26rem;}
+.section-1 .head-photo strong{height: .6rem;line-height: .6rem;font-size: .36rem;font-weight: 400;}
+.section-1 .div-box h3{font-size: .34rem; line-height: .5rem;}
+.section-1 .button-box .s-spa{width: 100%;display: inline-block;line-height: .35rem;  font-size: .26rem;font-weight: 400;white-space: nowrap;}
+.section-1 .button-box .icon-font{font-size: .4rem;width: 100%;line-height:.65rem;}
+.section-1 .button-box .e-em{width: 0; height:1rem;position: absolute; top: 0;left: 0;z-index:10;border-left:1px solid #d9d9da;}
+.section-1 .button-box button:last-child .icon-font{font-size: .5rem;}
+.section-1 .div-box h4{ height: .6rem;line-height: .6rem;font-size: .26rem;}
+.section-1 .div-box .follow-img{width: .4rem;height: .4rem;}
+.section-1 .div-box .follow-more .icon-font{width: .5rem; height: .6rem;line-height: .6rem;text-align: center; font-size: .26rem; margin: 0;padding: 0;}
+.section-1 .button-box button:first-child .e-em{display: none;}
+.section-1 .button-box button.active{color:#2e52da;}
+.section-1 .row-ul li.have-read{ background-color: #f2f2f3;}
+.section-1 .row-ul li.have-read h3 a{color: #9ea3b7;}
+
+/* footer */
+footer{height:1rem;position: fixed;border-top:1px solid #e6e6e6; bottom: 0; left: 0;z-index: 9996;}  
+footer .icon-font{width: 100%; text-align: center;margin-top:.1rem;font-size: .45rem;height: .5rem;line-height: .5rem;}
+footer .s-span{width: 100%; text-align: center;font-size: .24rem;line-height: .35rem;}
+
+/* return-top */
+.return-top{width:.8rem;height: .8rem;position: fixed;bottom:1.4rem;right:.1rem;z-index: 9999;}
+.return-top .icon-font{ width:.8rem;height: .8rem;line-height: .8rem;text-align: center;font-size: .6rem;}
+
+/* pop-delete */
+.pop-delete{display: none; width: calc(80% - .6rem);margin: 0 10%;padding:.5rem .3rem;position: fixed; left: 0;top:25%;  z-index: 9999;overflow: hidden;}
+.pop-delete h3{width: 100%;line-height: .6rem;font-size: .36rem;font-weight: 600;}
+.pop-delete p{width: 100%;line-height: .5rem;font-size: .26rem;text-align: center;}
+.pop-delete .btn-pop-ok,
+.pop-delete .btn-pop-no{width:50%; margin:0 25%; height:.6rem;line-height: .6rem;font-size: .3rem;font-weight:500;border-radius:.3rem; -webkit-border-radius:.3rem; -moz-border-radius:.3rem; -ms-border-radius:.3rem; -o-border-radius:.3rem; }
+.pop-delete .btn-pop-ok{background-color: #edf0ff;}
+.pop-delete .pop-close{width: .8rem;height: .8rem;line-height: .8rem;font-size: .36rem;margin:-.5rem -5% 0 0; cursor: pointer; }
+
+ 

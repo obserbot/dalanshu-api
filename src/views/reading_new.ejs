@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+  <head> 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>大蓝书</title>
+    <link rel="stylesheet" href="/dls/stylesheets/grid.css">
+    <link rel='stylesheet' href="/dls/stylesheets/iconfont.css">
+    <link rel='stylesheet' href="/dls/stylesheets/sub.css">
+    <link rel='stylesheet' href="/dls/stylesheets/gzhzj.css">
+    <script src="/dls/javascripts/jquery-2.1.4.min.js"></script>
+    <script src="/dls/javascripts/public.js"></script>
+
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?136140c46d99c5bc85026cb42e4a180e";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
+  </head> 
+
+  <body ontouchstart="">
+
+  <header></header>
+    
+  <main class="bg-1">
+        <section class=""> 
+        	<div class="container">
+        	  <div class="row">
+                <div class="sub-title mt-30">
+                    <div class="l-box"><h2 class="c-white"> 推荐文章 </h2></div>
+                    <div class="r-box">
+                       <button class="float-l show-hide-read">
+                          <span class="c-white s-span read-switch show-read"> 隐藏已读 </span> 
+                          <em class="bgc-white e-em rounded-c"></em>
+                       </button>
+                    </div>
+                </div>
+        	  </div>
+        	</div>
+        </section>
+ 
+        <section class="section-0">
+        </section>
+
+        <section class="section-1"> 
+          <div class="container button-wrap limit-height">
+            <% for (let ii=0; ii < allcategories.length; ++ii) { %>
+              <button class="cate-button <%= allcategories[ii].stat %>" data-cid="<%= allcategories[ii].id %>">
+                <%= allcategories[ii].name %>
+              </button>
+            <% } %>
+          </div>
+          <div class="container down-arrow-wrap">
+            <img src="/dls/images/down-arrow.png">
+          </div>
+
+          <div class="container" id="reading_tasks_table">
+            <% if ( ! articles_exist) { %>
+              目前没有未阅读文章。
+            <% } else { %>
+              <div class="table-body articles-outside">
+                <ul class="row row-ul">
+                </ul>
+              </div>
+            <% } %>
+          </div>
+
+          <div class="more-button-wrap hidden">
+            <button class="more-articles">更多</button>
+          </div>
+        </section>
+  </main>
+
+  <footer class="bgc-white footer-nav-wrap">
+    <section>
+      <div class="container">
+        <div class="row btn-wrap">
+          <button class="col-4 c-grey c-blue-h btn-community">
+            <i class="float-l iconfont icon-font text-c"> &#xe609; </i>
+            <span class="float-l s-span text-c">社区</span>
+          </button>
+          <button class="col-4 c-grey c-blue-h active btn-articles">
+            <i class="float-l iconfont icon-font text-c"> &#xe675; </i>
+            <span class="float-l s-span text-c">文章</span>
+          </button>
+          <button class="col-4 c-grey c-blue-h btn-gzhs">
+            <i class="iconfont icon-font text-c"> &#xe675; </i>
+            <span class="s-span text-c">公众号</span>
+          </button>
+          <button class="col-4 c-grey c-blue-h btn-my">
+            <span>
+            <i class="float-l iconfont icon-font text-c"> &#xe61a; </i>
+            </span>
+            <span class="float-l s-span text-c">我的</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </footer>
+
+  <div id="reading_result_window" class="hidden">
+    <div class="pop-text">
+    阅读完成
+    </div>
+  </div>
+
+  <!--
+  <div class="float-r bgc-white rounded-c return-top">
+    <button class="float-l c-blue"><i class="float-l iconfont icon-font text-c"> &#xe85d; </i></button>
+  </div>
+  -->
+
+    <!-- pop-delete -->
+    <div class="mask-box"></div>
+    <div class="float-l pop-delete rounded-10 bgc-white">
+        <div class="c-box"><i class="float-r iconfont icon-font text-c  c-grey c-blue-h pop-close"> &#xe61c; </i></div>
+        <div class="c-box">
+          <!--
+            <h3 class="float-l text-c"> 赞赏提示信息 </h3>
+            <p class="float-l text-c pt-15 pb-15"> “您的赞赏将增加***50积分，<br/> 删除信息，则您的赞赏将减少50积分 ” </p>
+          -->
+          <input class="modal-article-id hidden" type="text" value="0">
+
+          <div class="checkbox-wrap">
+            <% for (let ix=0; ix < allcategories.length; ++ix) { %>
+              <span class="category-item">
+                <input class="category-input" type="checkbox" name="categories" value="<%= allcategories[ix].id %>" checked="true">
+                <label><%= allcategories[ix].name %></label>
+              </span>
+            <% } %>
+          </div>
+          <div>
+            <input class="modal-rate" type="text" value="3">
+          </div>
+
+        </div>
+        <div class="c-box">
+            <button class="float-l mt-30 text-c c-blue-h btn-pop-ok"> 确认 </button>
+            <button class="float-l mt-30 text-c c-blue-h c-grey btn-pop-no"> 取消 </button>
+        </div>
+    </div>
+
+    <div class="my-categories hidden"><%= my_categories %></div>
+    <div class="json-articles hidden"><%= json_articles %></div>
+
+    <div class="is-editor hidden"><%= is_editor %></div>
+    <div class="user-role hidden"><%= role %></div>
+
+    <div class="hidden">Token: <span class="token"><%= token %></span></div>
+    <script src="/dls/javascripts/axios.min.js"></script>
+    <script src="/dls/javascripts/reading.js"></script>
+  </body>
+</html>
