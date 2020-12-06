@@ -1,0 +1,9 @@
+PORT=3000
+
+URL_BASE=https://example.com/
+
+PG_USER=user
+PG_HOST=localhost
+PG_DATABASE=database
+PG_PASSWORD=password
+PG_PORT=5432
