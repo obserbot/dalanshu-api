@@ -4,11 +4,23 @@
 
 //import articlesRouter from './routes/articles'
 const articlesRouter = require('./routes/articles');
+const baseloginRouter = require('./routes/baselogin');
+const baseredirectRouter = require('./routes/baseredirect');
+const test1Router = require('./routes/test1');
 
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+
+// Initiate environment variables.
+const env = require('dotenv')
+env.config()
+
+// Initiate datbase connection.
+import { initPostgres } from './modules/db'
+initPostgres()
+
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
@@ -28,7 +40,10 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', indexRouter);
 app.use('/articles', articlesRouter);
+app.use('/baselogin', baseloginRouter);
+app.use('/baseredirect', baseredirectRouter);
 app.use('/users', usersRouter);
+app.use('/test1', test1Router);
 
 // catch 404 and forward to error handler
 app.use(function(req: any, res: any, next: any) {
