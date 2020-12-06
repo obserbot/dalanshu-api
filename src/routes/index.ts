@@ -5,7 +5,7 @@ const router = express.Router()
 /**
  * Homepage
  */
-router.get('/', function(req: Request, res: Response, next: NextFunction) {
+router.get('/', function(req: Request, res: Response, next: any) {
   res.render('index', { title: '大蓝书' })
 })
 
