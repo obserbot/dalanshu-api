@@ -2,10 +2,9 @@
  * app.ts
  */
 
-//import articlesRouter from './routes/articles'
-const articlesRouter = require('./routes/articles');
+import { articlesRouter } from './routes/articles'
 const baseloginRouter = require('./routes/baselogin');
-const baseredirectRouter = require('./routes/baseredirect');
+import { baseredirectRouter } from './routes/baseredirect'
 const test1Router = require('./routes/test1');
 
 var createError = require('http-errors');

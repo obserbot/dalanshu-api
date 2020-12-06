@@ -1,6 +1,6 @@
 // reading.js
 
-const express = require('express');
+import express from 'express'
 const articlesRouter = express.Router();
 
 const axios = require('axios')
@@ -8,31 +8,29 @@ const axios = require('axios')
 /**
  * 最近1小时阅读量
  */
-const lastHourReadings = (uid) => {
+const lastHourReadings = (uid: any) => {
 
-  return new Promise((resolve, reject) => {
+  return new Promise( async (resolve: any, reject: any) => {
 
     const sql = `
-      SELECT
-        id
-      FROM
-        Log
-      WHERE
-        type_id = 3
-      AND
-        uid = $1
-      AND
-        created_at > NOW() - INTERVAL '1 hours'
+      SELECT id
+      FROM Log
+      WHERE type_id = 3
+        AND uid = $1
+        AND created_at > NOW() - INTERVAL '1 hours'
     `
     const val = [uid]
 
-    global.client.query(sql, val)
-      .then(res => {
-        resolve(res.rows.length)
-      })
-      .catch(err => {
-        resolve(0)
-      })
+  // try pool!
+      const pool = await global.pgPool.connect()
+
+      try {
+        const res = await pool.query(sql, val)
+        console.log('!!!! ', res)
+      } catch (err: any) {
+        console.log('数据库错了！！！！')
+      }
+      pool.release()
   })
 }
 
@@ -53,8 +51,21 @@ articlesRouter.get('/', async (req: any, res: any, next: any) => {
     last_hour_readings: 0,
   }
 
+  //const aaa = await lastHourReadings(30)
+
   const cookie = req.cookies.gzhzj
   const iid = req.query.iid ? req.query.iid : '0' // 邀请码
+
+  /*
+  if (cookie && cookie.length > 20) {
+    console.log('')
+    console.log('COOKIE: In here')
+  } else {
+    console.log('')
+    console.log('Not !! In here')
+  }
+    console.log('')
+   */
 
   // 判断是否在微信内
   let ua = ''
@@ -62,27 +73,12 @@ articlesRouter.get('/', async (req: any, res: any, next: any) => {
     ua = req.headers['user-agent'].toLowerCase()
   }
 
-  // 1. cookie
-  // 2. no cookie, businessonwechat login -> token (to set cookie) -> cookie
-  // 3. token. Its purpose is only to set cookie.
-  if (req.query.token && req.query.token.length > 10) {
-    //res.cookie('gzhzj', req.query.token, {maxAge:900000})
-    //res.redirect(process.env.URL_BASE)
-    axios.get('https://businessonwechat.com/gzh/api_reading?token=' + req.query.token)
-      .then(res3 => {
-        const pd = res3.data.readingdata
-        res.render('reading_new', pd)
-        //res.render('reading_new', res3.data.readingdata)
-      })
-      .catch(err => {
-        res.render('reading_new', readingdata)
-      })
-  } else if (cookie && cookie.length > 20) {
+  if (cookie && cookie.length > 20) {
     axios.get('https://businessonwechat.com/gzh/api_reading?token=' + cookie)
-      .then(res2 => {
+      .then((res2: any) => {
         res.render('reading_new', res2.data.readingdata)
       })
-      .catch(err => {
+      .catch(function(err: any) {
         res.render('reading_new', readingdata)
       })
   } else if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -92,7 +88,7 @@ articlesRouter.get('/', async (req: any, res: any, next: any) => {
   } else { // 新用户，在非微信中访问
     //logger.error('reading: 新用户访问: no token, no cookie, not in wechat')
     axios.get('https://businessonwechat.com/gzh/api_reading_new_user')
-      .then(res3 => {
+      .then((res3: any) => {
         if (res3.data.message === 'ok') {
           res.cookie('gzhzj', res3.data.readingdata.token, {maxAge:900000})
           res.render('reading_new', res3.data.readingdata)
@@ -102,12 +98,11 @@ articlesRouter.get('/', async (req: any, res: any, next: any) => {
           res.send('Error 300120')
         }
       })
-      .catch(err3 => {
+      .catch(function(err3: Error) {
         //logger.error('new user error! ' + err3)
         res.send('Error 300121')
       })
   }
 })
 
-//export default articlesRouter
-module.exports = articlesRouter
+export { articlesRouter }
