@@ -11,6 +11,7 @@ baseredirectRouter.get('/', (req: any, res: any, next: any) => {
     const appid = process.env.OFFICIAL_appid
     const secret = process.env.OFFICIAL_secret
     const state = 'base'
+
     axios.get(`https://api.weixin.qq.com/sns/oauth2/access_token?appid=${appid}&secret=${secret}&code=${req.query.code}&grant_type=authorization_code`)
       .then( async (res1: any) => {
         if (res1.data.openid && res1.data.access_token && res1.data.refresh_token) {
@@ -30,8 +31,7 @@ baseredirectRouter.get('/', (req: any, res: any, next: any) => {
               res.status(200).send('Error')
             } else {
               res.cookie('gzhzj', res2.token, {maxAge:900000})
-              res.writeHead(301, { Location: process.env.URL_BASE + 'articles' })
-              res.end()
+              res.render('redirect', {})
             }
           } catch (err2: any) {
             res.status(200).send('Error 27')

@@ -56,17 +56,6 @@ articlesRouter.get('/', async (req: any, res: any, next: any) => {
   const cookie = req.cookies.gzhzj
   const iid = req.query.iid ? req.query.iid : '0' // 邀请码
 
-  /*
-  if (cookie && cookie.length > 20) {
-    console.log('')
-    console.log('COOKIE: In here')
-  } else {
-    console.log('')
-    console.log('Not !! In here')
-  }
-    console.log('')
-   */
-
   // 判断是否在微信内
   let ua = ''
   if (req.headers['user-agent']) { // user-agent 可能为 undefined，啥情况？
@@ -82,9 +71,7 @@ articlesRouter.get('/', async (req: any, res: any, next: any) => {
         res.render('reading_new', readingdata)
       })
   } else if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-    //res.writeHead(301, { Location: 'https://businessonwechat.com/gzh/login?dest=togzhzj&iid=' + iid })
-    res.writeHead(301, { Location: 'https://businessonwechat.com/gzh/login?dest=dlsarticles' })
-    res.end()
+    res.render('redirect0', {})
   } else { // 新用户，在非微信中访问
     //logger.error('reading: 新用户访问: no token, no cookie, not in wechat')
     axios.get('https://businessonwechat.com/gzh/api_reading_new_user')

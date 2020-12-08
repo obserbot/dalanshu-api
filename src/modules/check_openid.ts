@@ -132,7 +132,7 @@ const check_base = (data: any) => {
   })
 }
 
-const check_openid = (data: any) => {
+const check_openid = (data: any): any => {
   return check_base(data)
 }
 

@@ -440,7 +440,7 @@ function show_more_articles () {
                   </strong>
                 </span>
                 <span class="haozhu-wrap">
-                  <img src="/avatar/${json_articles[pointer].uid}.jpeg" class="float-r pic-img rounded-c">
+                  <img src="/dls/avatar/${json_articles[pointer].uid}.jpeg" class="float-r pic-img rounded-c">
                   <span class="float-r s-span pl-15 pr-15 c-grey  c-blue-h">
                     ${json_articles[pointer].nickname}
                   </span>
