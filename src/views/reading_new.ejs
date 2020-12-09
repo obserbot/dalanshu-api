@@ -35,7 +35,7 @@
                 <div class="sub-title mt-30">
                     <div class="l-box"><h2 class="c-white"> 推荐文章 </h2></div>
                     <div class="r-box">
-                       <button class="float-l show-hide-read">
+                       <button class="float-l show-hide-read hidden">
                           <span class="c-white s-span read-switch show-read"> 隐藏已读 </span> 
                           <em class="bgc-white e-em rounded-c"></em>
                        </button>
@@ -45,18 +45,15 @@
         	</div>
         </section>
  
-        <section class="section-0">
-        </section>
-
         <section class="section-1"> 
-          <div class="container button-wrap limit-height">
+          <div class="container button-wrap limit-height hidden">
             <% for (let ii=0; ii < allcategories.length; ++ii) { %>
               <button class="cate-button <%= allcategories[ii].stat %>" data-cid="<%= allcategories[ii].id %>">
                 <%= allcategories[ii].name %>
               </button>
             <% } %>
           </div>
-          <div class="container down-arrow-wrap">
+          <div class="container down-arrow-wrap hidden">
             <img src="/dls/images/down-arrow.png">
           </div>
 
