@@ -363,30 +363,21 @@ try {
   json_my_categories = JSON.parse(my_categories)
   json_articles_all = JSON.parse(json_str)
 
-/*
-  const token3 = document.querySelector('.token').innerText
-  if (token3 == '5asg7GCXTJ56Gl4pYQkSpRPndS6mFD5JrSTv53php7uo3dF417jbjMtfnzJa4V6R') {
-    const cid2 = JSON.stringify(json_my_categories)
-    const vv2 = 'v2'
-    axios.get(`https://businessonwechat.com/gmserver/api_click_tag?isfrom=kkk&vv=${vv2}&token=${token3}&cid=${cid2}`)
-  }
-*/
-
   json_articles = json_articles_all.filter(el => {
-//OKOK
-    /*
-    */
     if (el.has_read) {
       return false
     }
+    return true
 
+    /*
     for (let i=0; i < el.categories.length; ++i) {
       if (json_my_categories.includes(el.categories[i])) {
         return true
       }
     }
-
     return false
+    */
+
 
     //return !el.has_read && el.category == current_category
   })
@@ -670,32 +661,21 @@ function switch_tag(evt) {
     json_articles = json_articles_all.filter(el => {
       if (el.has_read) {
         return false
+      } else {
+        return true
       }
 
+      /*
       for (var i=0; i < el.categories.length; ++i) {
         if (json_my_categories.includes(el.categories[i])) {
           return true
         }
       }
       return false
+      */
     })
-  }
-  else {
-    json_articles = json_articles_all.filter(el => {
-      for (var i=0; i < el.categories.length; ++i) {
-        if (json_my_categories.includes(el.categories[i])) {
-          return true
-        }
-      }
-      return false
-    })
-  }
-
-
-
-  if (token === '5asg7GCXTJ56Gl4pYQkSpRPndS6mFD5JrSTv53php7uo3dF417jbjMtfnzJa4V6R') {
-    const cid5 = JSON.stringify(json_articles.length + '|||||||')
-    axios.get(`https://businessonwechat.com/gmserver/api_click_tag?isfrom=kkk&vv=${vv}&token=${token}&cid=${cid5}`)
+  } else {
+    return true
   }
 
   // 3. 显示文章
@@ -703,9 +683,6 @@ function switch_tag(evt) {
   wrap.innerHTML = ''
   pointer = 0
   show_more_articles()
-  /*
-  */
-
 }
 
 
@@ -732,7 +709,3 @@ const downArrow = document.querySelector('.down-arrow-wrap img')
 if (downArrow) {
   downArrow.addEventListener('click', down_arrow)
 }
-
-
-
-
