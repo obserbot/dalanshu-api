@@ -33,8 +33,9 @@ baseredirectRouter.get('/', (req: any, res: any, next: any) => {
               res.cookie('gzhzj', res2.token, {maxAge:900000})
               res.render('redirect', {})
             }
-          } catch (err2: any) {
-            res.status(200).send('Error 27')
+          } catch (err: any) {
+            console.log('1027: ', err)
+            res.status(200).send('Error 1027')
           }
         } else {
           res.send('网络错误，请重试！')

@@ -18,6 +18,8 @@
 
     ../dist/app.js
 
+在 app.ts 中，将静态文件目录从 public 改成 ../public
+
 安装 Typescript 需要的库：
 
     npm i -D typescript

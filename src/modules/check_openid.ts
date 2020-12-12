@@ -40,7 +40,7 @@ const create_user = (data: any) => {
 
     //get_token()
     getNewToken()
-      .then(token => {
+      .then(async(token) => {
         const sql = `
           INSERT INTO Wusers
             (openid, access_token, refresh_token, token, token_expired_at, categories)
@@ -56,7 +56,8 @@ const create_user = (data: any) => {
           cates,
         ]
 
-        global.client.query(sql, values)
+        const pool = await global.pgPool.connect()
+        pool.query(sql, values)
           .then(res2 => {
             console.log('Insert a new user successfully!')
             const id = res2.rows[0].id
@@ -67,7 +68,8 @@ const create_user = (data: any) => {
             reject(false)
           })
       })
-      .catch(err => {
+      .catch((err: any) => {
+        console.log('Inser err db:: ', err)
         reject(false)
       })
   })
@@ -95,9 +97,11 @@ const check_base = (data: any) => {
     `
     const val = [data.openid]
 
+    let pool: any
+    let res: any = -1
     try {
-      const pool = await global.pgPool.connect()
-      const res = await pool.query(sql, val)
+      pool = await global.pgPool.connect()
+      res = await pool.query(sql, val)
       pool.release()
       if (res.rows.length > 0) {
         resolve({
@@ -123,10 +127,13 @@ const check_base = (data: any) => {
             'cash': '0.20',
           })
         } else {
+          console.log('db:: 1028', res2)
           reject(false)
         }
       }
     } catch (err: any) {
+      console.log('db:: 1029', res)
+      console.log('db:: 1027', err)
       reject(false)
     }
   })
