@@ -115,7 +115,7 @@ const check_base = (data: any) => {
           'avatar': res.rows[0].avatar ? res.rows[0].avatar : false,
         })
       } else {
-        const res2 = await create_user(data)
+        const res2: any = await create_user(data)
         if (res2) {
           resolve({
             'id': res2.id,
