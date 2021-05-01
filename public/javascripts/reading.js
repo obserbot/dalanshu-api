@@ -352,15 +352,15 @@ window.addEventListener('pageshow', function (ev) {
 var categories = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 let current_category = 10
 
-let json_my_categories = []
 let json_articles = []
 let json_articles_all
 
 try {
-  const my_categories = document.querySelector('.my-categories').innerText
+  //const my_categories = document.querySelector('.my-categories').innerText
   const json_str = document.querySelector('.json-articles').innerText
 
-  json_my_categories = JSON.parse(my_categories)
+
+  //json_my_categories = JSON.parse(my_categories)
   json_articles_all = JSON.parse(json_str)
 
   json_articles = json_articles_all.filter(el => {
@@ -369,15 +369,6 @@ try {
     }
     return true
 
-    /*
-    for (let i=0; i < el.categories.length; ++i) {
-      if (json_my_categories.includes(el.categories[i])) {
-        return true
-      }
-    }
-    return false
-    */
-
 
     //return !el.has_read && el.category == current_category
   })
@@ -385,7 +376,7 @@ try {
   console.log('Get all articles error', err)
 }
 
-const is_editor = document.querySelector('.is-editor').innerText
+//const is_editor = document.querySelector('.is-editor').innerText
 const role = document.querySelector('.user-role').innerText
 let pointer = 0
 
@@ -406,7 +397,7 @@ function show_more_articles () {
       has_read = json_articles[pointer].has_read ? 'have-read' : ''
       icon_up = json_articles[pointer].is_up ? '/images/up.png' : '/images/like.png'
       shownid = role == '4' ? '<span>(' + json_articles[pointer].aid + ')</span>' : ''
-      pencil = (is_editor === '1' && !json_articles[pointer].edited) ? '<img src="/images/pencil.png" class="pencil-icon">' : ''
+      //pencil = (is_editor === '1' && !json_articles[pointer].edited) ? '<img src="/images/pencil.png" class="pencil-icon">' : ''
 
       // Show five stars
       /*
@@ -431,7 +422,7 @@ function show_more_articles () {
                   </strong>
                 </span>
                 <span class="haozhu-wrap">
-                  <img src="/dls/avatar/${json_articles[pointer].uid}.jpeg" class="float-r pic-img rounded-c">
+                  <img src="${json_articles[pointer]['avatar']}" class="float-r pic-img rounded-c">
                   <span class="float-r s-span pl-15 pr-15 c-grey  c-blue-h">
                     ${json_articles[pointer].nickname}
                   </span>
@@ -498,21 +489,7 @@ function show_more_articles () {
           </li>
         `
 
-      /*
-                */
 
-      /*
-              <div class="gzh-wrap pb-20 hidden">
-                <h4 class="">
-                  <div href="javascript:void(0)" class="float-l c-grey c-blue-h">
-                    ${json_articles[pointer].account_name}
-                  </div>
-                </h4>
-                <div class="gzh-last-item">
-                  ${pencil}
-                </div>
-              </div>
-              */
       div = document.createElement('div')
       div.innerHTML = el
       wrap.appendChild(div)
@@ -638,6 +615,7 @@ function switch_tag(evt) {
 
   // 1. 确定分类
   let vv
+    /*
   if (WY_hasClass(btn, 'active')) {
     vv = 'has'
     WY_removeClass(btn, 'active')
@@ -654,6 +632,7 @@ function switch_tag(evt) {
       json_my_categories.push(cidnum)
     }
   }
+  */
 
   // 2. 确定文章
   var readSwitch = document.querySelector('.read-switch')
